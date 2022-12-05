@@ -7,14 +7,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faMagnifyingGlass,
     faCartArrowDown,
+    faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
+import ProductHover from "./components/ProductHover";
 
 const cx = classNames.bind(styles);
 
 const headerLists = [
     {
-        title: "Trang Chủ",
+        title: "Trang chủ",
         path: "/",
     },
     {
@@ -38,17 +40,33 @@ const headerLists = [
 const Header = () => {
     return (
         <div className={cx("header")}>
-            <div className="headerList">
+            <div className={cx("headerList")}>
                 <ul>
                     {headerLists.map((item, index) => (
-                        <Link to={item.path}>
-                            <li key={index}>{item.title}</li>
+                        <Link to={item.path} key={index}>
+                            {item.title === "Sản phẩm" ? (
+                                <>
+                                    <li
+                                        className={cx(
+                                            "headerListItem-dropdown"
+                                        )}
+                                    >
+                                        {item.title}
+                                        <FontAwesomeIcon icon={faCaretDown} />
+                                        <div className={cx("productHover")}>
+                                            <ProductHover />
+                                        </div>
+                                    </li>
+                                </>
+                            ) : (
+                                <li>{item.title}</li>
+                            )}
                         </Link>
                     ))}
                 </ul>
             </div>
             <div className={cx("headerImg")}>
-                <Link>
+                <Link to="/">
                     <img
                         src="https://bizweb.dktcdn.net/100/431/449/themes/877121/assets/logo.png?1666922741919"
                         alt=""
@@ -62,16 +80,22 @@ const Header = () => {
                         placeholder="Bạn cần tìm gì?"
                         className={cx("headerOptions-input")}
                     />
-                    <button>
+                    <button className={cx("headerOptions-btn")}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                 </div>
-                <div className="headerOption-user">
+                <div className={cx("headerOptions-user")}>
                     <Link>
                         <FontAwesomeIcon icon={faHeart} />
+                        <span className={cx("headerOptions-user-numbers")}>
+                            1
+                        </span>
                     </Link>
                     <Link>
                         <FontAwesomeIcon icon={faCartArrowDown} />
+                        <span className={cx("headerOptions-user-numbers")}>
+                            2
+                        </span>
                     </Link>
                     <Link>
                         <FontAwesomeIcon icon={faUser} />

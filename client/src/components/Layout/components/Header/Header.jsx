@@ -10,7 +10,6 @@ import {
     faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
-import ProductHover from "./components/ProductHover";
 
 const cx = classNames.bind(styles);
 
@@ -37,13 +36,52 @@ const headerLists = [
     },
 ];
 
+const products = [
+    {
+        name: "Trái cây",
+        type: "trai-cay",
+    },
+    {
+        name: "Thịt tươi",
+        type: "thit-tuoi",
+    },
+    {
+        name: "Hải sản tươi",
+        type: "hai-san-tuoi",
+    },
+    {
+        name: "Rau củ",
+        type: "rau-cu",
+    },
+    {
+        name: "Thực phẩm khô",
+        type: "thuc-pham-kho",
+    },
+    {
+        name: "Đồ uống",
+        type: "do-uong",
+    },
+    {
+        name: "Hạt giống",
+        type: "hat-giong",
+    },
+    {
+        name: "Đồ ăn đóng hộp",
+        type: "do-an-dong-hop",
+    },
+];
+
 const Header = () => {
     return (
         <div className={cx("header")}>
             <div className={cx("headerList")}>
                 <ul>
                     {headerLists.map((item, index) => (
-                        <Link to={item.path} key={index}>
+                        <Link
+                            to={item.path}
+                            key={index}
+                            className={cx("headerList-title")}
+                        >
                             {item.title === "Sản phẩm" ? (
                                 <>
                                     <li
@@ -52,9 +90,27 @@ const Header = () => {
                                         )}
                                     >
                                         {item.title}
-                                        <FontAwesomeIcon icon={faCaretDown} />
+                                        <FontAwesomeIcon
+                                            icon={faCaretDown}
+                                            className={cx(
+                                                "headerListItem-icon"
+                                            )}
+                                        />
                                         <div className={cx("productHover")}>
-                                            <ProductHover />
+                                            <ul>
+                                                {products.map(
+                                                    (product, index) => (
+                                                        <Link
+                                                            to={product.type}
+                                                            key={index}
+                                                        >
+                                                            <li>
+                                                                {product.name}
+                                                            </li>
+                                                        </Link>
+                                                    )
+                                                )}
+                                            </ul>
                                         </div>
                                     </li>
                                 </>
@@ -98,7 +154,14 @@ const Header = () => {
                         </span>
                     </Link>
                     <Link>
-                        <FontAwesomeIcon icon={faUser} />
+                        <FontAwesomeIcon
+                            icon={faUser}
+                            className={cx("headerOptions-user-profile")}
+                        />
+                        <ul className={cx("headerOptions-profileList")}>
+                            <li>Đăng nhập</li>
+                            <li>Đăng ký</li>
+                        </ul>
                     </Link>
                 </div>
             </div>

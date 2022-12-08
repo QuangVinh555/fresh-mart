@@ -3,7 +3,11 @@ import styles from "./Deal.module.scss";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTags } from "@fortawesome/free-solid-svg-icons";
+import {
+    faTags,
+    faHeart,
+    faCircleInfo,
+} from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 
 const Deal = () => {
@@ -25,6 +29,16 @@ const Deal = () => {
                             alt=""
                             className={cx("deal-img")}
                         />
+                        <div className={cx("deal-product-icon")}>
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-heart")}
+                                icon={faHeart}
+                            />
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-detail")}
+                                icon={faCircleInfo}
+                            />
+                        </div>
                     </div>
                     <span className={cx("deal-name")}>Ổi lê ruột đỏ</span>
                     <div className={cx("deal-price")}>
@@ -40,6 +54,16 @@ const Deal = () => {
                             alt=""
                             className={cx("deal-img")}
                         />
+                        <div className={cx("deal-product-icon")}>
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-heart")}
+                                icon={faHeart}
+                            />
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-detail")}
+                                icon={faCircleInfo}
+                            />
+                        </div>
                     </div>
                     <span className={cx("deal-name")}>Đào đỏ Mỹ</span>
                     <div className={cx("deal-price")}>
@@ -55,6 +79,16 @@ const Deal = () => {
                             alt=""
                             className={cx("deal-img")}
                         />
+                        <div className={cx("deal-product-icon")}>
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-heart")}
+                                icon={faHeart}
+                            />
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-detail")}
+                                icon={faCircleInfo}
+                            />
+                        </div>
                     </div>
                     <span className={cx("deal-name")}>Dâu tây</span>
                     <div className={cx("deal-price")}>
@@ -70,6 +104,16 @@ const Deal = () => {
                             alt=""
                             className={cx("deal-img")}
                         />
+                        <div className={cx("deal-product-icon")}>
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-heart")}
+                                icon={faHeart}
+                            />
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-detail")}
+                                icon={faCircleInfo}
+                            />
+                        </div>
                     </div>
                     <span className={cx("deal-name")}>Chanh tươi vỏ xanh</span>
                     <div className={cx("deal-price")}>
@@ -85,6 +129,16 @@ const Deal = () => {
                             alt=""
                             className={cx("deal-img")}
                         />
+                        <div className={cx("deal-product-icon")}>
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-heart")}
+                                icon={faHeart}
+                            />
+                            <FontAwesomeIcon
+                                className={cx("deal-product-icon-detail")}
+                                icon={faCircleInfo}
+                            />
+                        </div>
                     </div>
                     <span className={cx("deal-name")}>Trái cam mật</span>
                     <div className={cx("deal-price")}>

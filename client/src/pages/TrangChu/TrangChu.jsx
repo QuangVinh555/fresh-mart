@@ -21,6 +21,20 @@ const TrangChu = () => {
             <div className="deal">
                 <Deal />
             </div>
+            <div className={cx("banner")}>
+                <div className={cx("banner-container")}>
+                    <img
+                        src="https://bizweb.dktcdn.net/100/431/449/themes/877121/assets/banner_1.jpg?1666922741919"
+                        alt=""
+                    />
+                </div>
+                <div className={cx("banner-container")}>
+                    <img
+                        src="https://bizweb.dktcdn.net/100/431/449/themes/877121/assets/banner_2.jpg?1666922741919"
+                        alt=""
+                    />
+                </div>
+            </div>
         </div>
     );
 };

@@ -3,8 +3,10 @@ import classNames from "classnames/bind";
 import styles from "./TrangChu.module.scss";
 import Category from "../../components/Category/Category";
 import Deal from "../../components/Deal/Deal";
+import ProductHome from "../../components/ProductHome/ProductHome";
 
 const cx = classNames.bind(styles);
+const categories = ["Trái cây", "Rau củ quả", "Thực phẩm tươi"];
 const TrangChu = () => {
     return (
         <div className={cx("wrapper")}>
@@ -34,6 +36,11 @@ const TrangChu = () => {
                         alt=""
                     />
                 </div>
+            </div>
+            <div className={cx("productHome")}>
+                {categories.map((item, index) => (
+                    <ProductHome key={index} title={item} />
+                ))}
             </div>
         </div>
     );

@@ -1,0 +1,102 @@
+.product-content{
+    display: flex;
+    justify-content: space-between;
+
+    .product-content-list{
+        border: 1px solid #e6e6e6;
+        border-radius: 10px;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        margin: 8px 0;
+
+        &:hover .product-product .product-product-icon{
+            transform: translateY(-42px);
+        }
+
+        &:hover .product-product img {
+            transform: scale(1.1);
+        }
+
+        .product-discount{
+            font-size: 1.4rem;
+            position: absolute;
+            background-color: #F14E18;;
+            color: var(--bs-white);
+            padding: 0 8px;
+            border-radius: 10px 0;
+            z-index: 10;
+        }
+
+        .product-product{
+            position: relative;
+            overflow: hidden;
+            img{
+                max-width: 220px;
+                min-height: 220px;
+                object-fit: cover;
+                transition: transform linear 0.3s;
+            }      
+
+            .product-product-icon{
+                text-align: center;
+                font-size: 2rem;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -42px;
+                transition: transform linear 0.2s;
+
+                .product-product-icon-heart{
+                    color: var(--bs-white);
+                    background-color: #eb3e32;
+                    padding: 8px 8px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+
+                    &:hover{
+                        background-color: var(--bs-yellow);
+                    }
+                }
+
+                .product-product-icon-detail{
+                    color: var(--bs-white);
+                    background-color: #3ba66b;
+                    padding: 8px 8px;
+                    border-radius: 50%;
+
+                    &:hover{
+                        background-color: var(--bs-yellow);
+                    }
+                }
+            }
+        }
+
+        .product-name{
+            display: block;
+            text-align: center;
+            font-size: 1.5rem;
+
+            &:hover{
+                color: var(--bs-yellow);
+            }
+        }
+        .product-price{
+            text-align: center;
+
+            span:nth-child(1){
+                font-size: 1.6rem;
+                color: #eb3e32;
+                font-weight: 700;
+                margin-right: 8px;
+            }
+
+            span:nth-child(2){
+                text-decoration: line-through;
+                font-size: 1.4rem;
+                color: #999999;
+            }
+        }
+    }
+}

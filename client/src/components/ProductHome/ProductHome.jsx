@@ -31,7 +31,7 @@ const ProductHome = ({ title }) => {
                     <ul>
                         <li>
                             <FontAwesomeIcon icon={faCircle} />
-                            <Link to="thit-tuoi">Thịt tươi</Link>
+                            <Link to="trai-cay">Trái cây</Link>
                         </li>
                         <li>
                             <FontAwesomeIcon icon={faCircle} />

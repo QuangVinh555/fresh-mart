@@ -1,22 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./GioiThieu.module.scss";
+import Title from "../../components/Title/Title";
 
 const cx = classNames.bind(styles);
 
 const GioiThieu = () => {
     return (
         <div className={cx("wrapper")}>
-            <div className={cx("introduct-img")}>
-                <div className={cx("introduct-title")}>
-                    <h2>Giới thiệu</h2>
-                    <Link className={cx("introduct-home")}>Trang chủ / </Link>
-                    <span className={cx("introduct-introduct")}>
-                        Giới thiệu
-                    </span>
-                </div>
-            </div>
+            <Title />
             <div className={cx("introduct-content")}>
                 <div className={cx("introduct-content-item")}>
                     <h2>Giới thiệu</h2>

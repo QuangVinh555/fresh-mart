@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
@@ -10,10 +10,11 @@ import {
     faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
+import { products } from "../../../../assets/product-category";
 
 const cx = classNames.bind(styles);
 
-const headerLists = [
+export const headerLists = [
     {
         title: "Trang chủ",
         path: "/",
@@ -36,42 +37,8 @@ const headerLists = [
     },
 ];
 
-const products = [
-    {
-        name: "Trái cây",
-        type: "trai-cay",
-    },
-    {
-        name: "Thịt tươi",
-        type: "thit-tuoi",
-    },
-    {
-        name: "Hải sản tươi",
-        type: "hai-san-tuoi",
-    },
-    {
-        name: "Rau củ",
-        type: "rau-cu",
-    },
-    {
-        name: "Thực phẩm khô",
-        type: "thuc-pham-kho",
-    },
-    {
-        name: "Đồ uống",
-        type: "do-uong",
-    },
-    {
-        name: "Hạt giống",
-        type: "hat-giong",
-    },
-    {
-        name: "Đồ ăn đóng hộp",
-        type: "do-an-dong-hop",
-    },
-];
-
 const Header = () => {
+    const location = useLocation();
     return (
         <div className={cx("header")}>
             <div className={cx("headerList")}>
@@ -85,9 +52,16 @@ const Header = () => {
                             {item.title === "Sản phẩm" ? (
                                 <>
                                     <li
-                                        className={cx(
-                                            "headerListItem-dropdown"
-                                        )}
+                                        className={
+                                            location.pathname !== item.path
+                                                ? `${cx(
+                                                      "headerListItem-dropdown"
+                                                  )}`
+                                                : `${cx(
+                                                      "headerListItem-dropdown",
+                                                      "active"
+                                                  )}`
+                                        }
                                     >
                                         {item.title}
                                         <FontAwesomeIcon
@@ -115,7 +89,15 @@ const Header = () => {
                                     </li>
                                 </>
                             ) : (
-                                <li>{item.title}</li>
+                                <li
+                                    className={
+                                        location.pathname === item.path
+                                            ? `${cx("active")}`
+                                            : ""
+                                    }
+                                >
+                                    {item.title}
+                                </li>
                             )}
                         </Link>
                     ))}

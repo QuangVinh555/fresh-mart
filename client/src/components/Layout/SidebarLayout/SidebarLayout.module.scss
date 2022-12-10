@@ -1,0 +1,12 @@
+.container-content{
+    display: flex;
+    padding: 0 120px;
+
+    .container-content-sidebar{
+        flex: 3;
+    }
+
+    .container-content-body{
+        flex: 9;
+    }
+}

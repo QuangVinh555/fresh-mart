@@ -5,6 +5,9 @@ const CategoryController = {
   create: async (req, res) => {
     const category = new Category(req.body);
     try {
+      if (req.body.name === category.name) {
+        return res.status(400).json("Danh mục này đã có");
+      }
       const newCategory = await category.save();
       return res.status(200).json(newCategory);
     } catch (error) {

@@ -30,7 +30,7 @@ const SanPham = () => {
                         <label>Giá thấp đến cao</label>
                     </div>
                     <div className={cx("product-filter-price-radio")}>
-                        <input type="radio" />
+                        <input type="radio" name="radio" />
                         <label>Giá cao xuống thấp</label>
                     </div>
                 </div>

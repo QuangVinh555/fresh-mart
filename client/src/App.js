@@ -11,9 +11,14 @@ import HomeAmin from "./pages/Admin/HomeAmin/HomeAmin";
 import NewsAmin from "./pages/Admin/NewsAmin/NewsAmin";
 import ListAdmin from "./pages/Admin/ListAdmin/ListAdmin";
 import SingleAdmin from "./pages/Admin/SingleAdmin/SingleAdmin";
+import { productInputs, userInputs } from "./formSource";
+import "./components/Admin/GlobalStyles/GlobalStyles.scss";
+import { useContext } from "react";
+import { DarkContext } from "./contexts/DarkModeContext";
 function App() {
+    const { dark } = useContext(DarkContext);
     return (
-        <div className="App">
+        <div className={dark ? "app dark" : "app"}>
             <Router>
                 <Routes>
                     {/* Default Layout */}
@@ -35,7 +40,15 @@ function App() {
                         <Route path="/admin/users">
                             <Route index element={<ListAdmin />} />
                             <Route path=":userId" element={<SingleAdmin />} />
-                            <Route path="new" element={<NewsAmin />} />
+                            <Route
+                                path="new"
+                                element={
+                                    <NewsAmin
+                                        inputs={userInputs}
+                                        title="Add new User"
+                                    />
+                                }
+                            />
                         </Route>
                         <Route path="/admin/products">
                             <Route index element={<ListAdmin />} />
@@ -43,7 +56,15 @@ function App() {
                                 path=":productId"
                                 element={<SingleAdmin />}
                             />
-                            <Route path="new" element={<NewsAmin />} />
+                            <Route
+                                path="new"
+                                element={
+                                    <NewsAmin
+                                        inputs={productInputs}
+                                        title="Add new Product"
+                                    />
+                                }
+                            />
                         </Route>
                     </Route>
                 </Routes>

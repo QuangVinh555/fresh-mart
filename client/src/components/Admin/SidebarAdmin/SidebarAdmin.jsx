@@ -35,14 +35,14 @@ const SidebarAdmin = () => {
                         <span>DashBoard</span>
                     </li>
                     <p className="title">Lists</p>
-                    <Link to="/admin/users" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/user" style={{ textDecoration: "none" }}>
                         <li>
                             <PersonOutlineIcon className="icon" />
                             <span>Users</span>
                         </li>
                     </Link>
                     <Link
-                        to="/admin/products"
+                        to="/admin/product"
                         style={{ textDecoration: "none" }}
                     >
                         <li>

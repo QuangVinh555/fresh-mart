@@ -4,13 +4,13 @@ import DataTableAdmin from "../../../components/Admin/DataTableAdmin/DataTableAd
 import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
 import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 
-const ListAdmin = () => {
+const ListAdmin = ({ columns }) => {
     return (
         <div className="list">
             <SidebarAdmin />
             <div className="listContainer">
                 <NavbarAdmin />
-                <DataTableAdmin />
+                <DataTableAdmin columns={columns} />
             </div>
         </div>
     );

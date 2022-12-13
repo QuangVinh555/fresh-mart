@@ -1,77 +1,60 @@
 export const userInputs = [
     {
-      id: 1,
-      label: "Username",
-      type: "text",
-      placeholder: "john_doe",
+        id: "username",
+        label: "Username",
+        type: "text",
+        placeholder: "john_doe",
+    },
+
+    {
+        id: "email",
+        label: "Email",
+        type: "mail",
+        placeholder: "john_doe@gmail.com",
     },
     {
-      id: 2,
-      label: "Name and surname",
-      type: "text",
-      placeholder: "John Doe",
+        id: "phone",
+        label: "Phone",
+        type: "text",
+        placeholder: "+1 234 567 89",
     },
     {
-      id: 3,
-      label: "Email",
-      type: "mail",
-      placeholder: "john_doe@gmail.com",
+        id: "password",
+        label: "Password",
+        type: "password",
+        placeholder: "Password must be longer than 6 characters",
     },
     {
-      id: 4,
-      label: "Phone",
-      type: "text",
-      placeholder: "+1 234 567 89",
+        id: "confirmPassword",
+        label: "Password",
+        type: "password",
+        placeholder: "Password must be longer than 6 characters",
     },
     {
-      id: 5,
-      label: "Password",
-      type: "password",
+        id: "address",
+        label: "Address",
+        type: "text",
+        placeholder: "Elton St. 216 NewYork",
+    },
+];
+
+export const productInputs = [
+    {
+        id: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Fruit",
     },
     {
-      id: 6,
-      label: "Address",
-      type: "text",
-      placeholder: "Elton St. 216 NewYork",
+        id: "price",
+        label: "Price",
+        type: "text",
+        placeholder: "price",
     },
     {
-      id: 7,
-      label: "Country",
-      type: "text",
-      placeholder: "USA",
+        id: "discount",
+        label: "Discount",
+        type: "text",
+        placeholder: "discount",
     },
-  ];
-  
-  export const productInputs = [
-    {
-      id: 1,
-      label: "Title",
-      type: "text",
-      placeholder: "Apple Macbook Pro",
-    },
-    {
-      id: 2,
-      label: "Description",
-      type: "text",
-      placeholder: "Description",
-    },
-    {
-      id: 3,
-      label: "Category",
-      type: "text",
-      placeholder: "Computers",
-    },
-    {
-      id: 4,
-      label: "Price",
-      type: "text",
-      placeholder: "100",
-    },
-    {
-      id: 5,
-      label: "Stock",
-      type: "text",
-      placeholder: "in stock",
-    },
-  ];
-  
+];

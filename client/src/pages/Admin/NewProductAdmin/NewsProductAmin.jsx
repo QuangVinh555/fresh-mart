@@ -1,11 +1,11 @@
 import React from "react";
-import "./NewsAdmin.scss";
+import "./NewsProductAdmin.scss";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
 
-const NewsAmin = ({ title, inputs }) => {
+const NewsProductAdmin = ({ title, inputs }) => {
     const [file, setFile] = useState("");
 
     return (
@@ -60,4 +60,4 @@ const NewsAmin = ({ title, inputs }) => {
     );
 };
 
-export default NewsAmin;
+export default NewsProductAdmin;

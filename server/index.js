@@ -2,11 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import connectDB from "./config/connect.js";
 import route from "./routes/index.js";
+import cors from "cors";
 
 const app = express();
 
 // middleware
 app.use(express.json());
+app.use(cors());
 
 // connect
 mongoose.set("strictQuery", true);

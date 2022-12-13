@@ -25,6 +25,9 @@ const UserSchema = new Schema(
       required: true,
       min: 6,
     },
+    image: {
+      type: String,
+    },
     address: {
       type: String,
     },

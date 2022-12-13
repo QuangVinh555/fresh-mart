@@ -1,6 +1,6 @@
 export const userInputs = [
     {
-        id: "username",
+        id: "name",
         label: "Username",
         type: "text",
         placeholder: "john_doe",
@@ -20,12 +20,6 @@ export const userInputs = [
     },
     {
         id: "password",
-        label: "Password",
-        type: "password",
-        placeholder: "Password must be longer than 6 characters",
-    },
-    {
-        id: "confirmPassword",
         label: "Password",
         type: "password",
         placeholder: "Password must be longer than 6 characters",

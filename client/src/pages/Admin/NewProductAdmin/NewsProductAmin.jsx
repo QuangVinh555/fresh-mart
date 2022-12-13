@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./NewsProductAdmin.scss";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
+import { useContext } from "react";
+import { CategoryContext } from "../../../contexts/CategoryContext";
 
 const NewsProductAdmin = ({ title, inputs }) => {
+    const {
+        getAllCategories,
+        state: { loading, categories },
+    } = useContext(CategoryContext);
     const [file, setFile] = useState("");
 
+    useEffect(() => {
+        const getAllCatalog = async () => {
+            await getAllCategories();
+        };
+        getAllCatalog();
+    }, []);
+
+    const handleSelectCategory = (e) => {
+        console.log(e.target.value);
+    };
     return (
         <div className="new">
             <SidebarAdmin />
@@ -51,6 +67,25 @@ const NewsProductAdmin = ({ title, inputs }) => {
                                     />
                                 </div>
                             ))}
+                            <div className="formInput">
+                                <label>Category</label>
+                                <select
+                                    id="category"
+                                    onChange={handleSelectCategory}
+                                >
+                                    {loading
+                                        ? "loading..."
+                                        : categories &&
+                                          categories.map((item) => (
+                                              <option
+                                                  value={item._id}
+                                                  key={item._id}
+                                              >
+                                                  {item.name}
+                                              </option>
+                                          ))}
+                                </select>
+                            </div>
                             <button>Send</button>
                         </form>
                     </div>

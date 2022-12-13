@@ -4,13 +4,41 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const NewsUserAdmin = ({ title, inputs }) => {
+    const { register } = useContext(AuthContext);
     const [file, setFile] = useState("");
     const [info, setInfo] = useState({});
-    console.log(info);
+    const [confirmPassword, setConfirmPassword] = useState("");
     const handleChangeInfo = (e) => {
         setInfo({ ...info, [e.target.id]: e.target.value });
+    };
+    const handleAddUser = async (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "upload");
+        try {
+            const uploadRes = await axios.post(
+                "https://api.cloudinary.com/v1_1/quangvinh255/image/upload",
+                data
+            );
+            const { url } = uploadRes.data;
+            if (info.password !== confirmPassword) {
+                alert("Mật khẩu không trùng khớp");
+            }
+            const user = {
+                ...info,
+                image: url,
+            };
+            await register(user);
+            alert("Thêm user thành công");
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <div className="new">
@@ -57,7 +85,17 @@ const NewsUserAdmin = ({ title, inputs }) => {
                                     />
                                 </div>
                             ))}
-                            <button>Send</button>
+                            <div className="formInput">
+                                <label>Confirm password</label>
+                                <input
+                                    type="password"
+                                    placeholder="Confirm password"
+                                    onChange={(e) =>
+                                        setConfirmPassword(e.target.value)
+                                    }
+                                />
+                            </div>
+                            <button onClick={handleAddUser}>Send</button>
                         </form>
                     </div>
                 </div>

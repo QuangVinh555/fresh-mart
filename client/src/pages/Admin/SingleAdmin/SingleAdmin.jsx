@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SingleAdmin.scss";
 
 import ChartAdmin from "../../../components/Admin/ChartAdmin/ChartAdmin";
 import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
 import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 import TableAdmin from "../../../components/Admin/TableAdmin/TableAdmin";
+import { UserContext } from "../../../contexts/UserContext";
+import { useParams } from "react-router-dom";
+import UpdateUser from "../../../modals/UpdateUser";
 
 const SingleAdmin = () => {
+    const {
+        getUser,
+        state: { user },
+    } = useContext(UserContext);
+    const param = useParams().userId;
+    useEffect(() => {
+        const loadUser = async () => {
+            await getUser(param);
+        };
+        loadUser();
+    }, [param]);
+
+    const [openUpdateUser, setOpenUpdateUser] = useState(false);
+    const handleOpenEdit = () => {
+        setOpenUpdateUser(true);
+    };
+
     return (
         <div className="single">
             <SidebarAdmin />
@@ -14,32 +34,30 @@ const SingleAdmin = () => {
                 <NavbarAdmin />
                 <div className="top">
                     <div className="left">
-                        <div className="editButton">Edit</div>
+                        <div className="editButton" onClick={handleOpenEdit}>
+                            Edit
+                        </div>
                         <h1 className="title">Information</h1>
                         <div className="item">
-                            <img
-                                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                                alt=""
-                                className="itemImg"
-                            />
+                            <img src={user?.image} alt="" className="itemImg" />
                             <div className="details">
-                                <h1 className="itemTitle">Jane Doe</h1>
+                                <h1 className="itemTitle">{user?.name}</h1>
                                 <div className="detailItem">
                                     <span className="itemKey">Email:</span>
                                     <span className="itemValue">
-                                        janedoe@gmail.com
+                                        {user?.email}
                                     </span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Phone:</span>
                                     <span className="itemValue">
-                                        +1 2345 67 89
+                                        {user?.phone}
                                     </span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Address:</span>
                                     <span className="itemValue">
-                                        Elton St. 234 Garden Yd. NewYork
+                                        {user?.address}
                                     </span>
                                 </div>
                                 <div className="detailItem">
@@ -61,6 +79,9 @@ const SingleAdmin = () => {
                     <TableAdmin />
                 </div>
             </div>
+            {openUpdateUser && (
+                <UpdateUser setOpen={setOpenUpdateUser} user={user} />
+            )}
         </div>
     );
 };

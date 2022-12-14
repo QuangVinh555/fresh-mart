@@ -7,9 +7,14 @@ import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const NewsUserAdmin = ({ title, inputs }) => {
-    const { register } = useContext(AuthContext);
+    const {
+        register,
+        state: { loading },
+    } = useContext(AuthContext);
     const [file, setFile] = useState("");
     const [info, setInfo] = useState({});
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -35,7 +40,15 @@ const NewsUserAdmin = ({ title, inputs }) => {
                 image: url,
             };
             await register(user);
+            if (loading) {
+                return (
+                    <Box sx={{ display: "flex" }}>
+                        <CircularProgress Determinate Indeterminate />
+                    </Box>
+                );
+            }
             alert("Thêm user thành công");
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }

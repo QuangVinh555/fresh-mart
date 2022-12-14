@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./DataTableAdmin.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link, useLocation } from "react-router-dom";
@@ -7,13 +7,17 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 const DataTableAdmin = ({ columns }) => {
+    const { deleteN } = useContext(AllContext);
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const {
         getAllUsers,
         state: { loading, data },
     } = useContext(AllContext);
-
+    const [list, setList] = useState("");
+    useEffect(() => {
+        setList(data);
+    }, [data]);
     useEffect(() => {
         const getAll = async () => {
             if (loading) {
@@ -27,8 +31,10 @@ const DataTableAdmin = ({ columns }) => {
         };
         getAll();
     }, [path]);
-    const handleDelete = (id) => {
-        // setData(data.filter((item) => item.id !== id));
+    const handleDelete = async (id) => {
+        await deleteN(id, path);
+        setList(list.filter((item) => item._id !== id));
+        alert("Đã xóa thành công");
     };
 
     const actionColumn = [
@@ -66,7 +72,7 @@ const DataTableAdmin = ({ columns }) => {
             </div>
             <DataGrid
                 className="datagrid"
-                rows={data || ""}
+                rows={list || []}
                 columns={columns.concat(actionColumn)}
                 pageSize={9}
                 rowsPerPageOptions={[9]}

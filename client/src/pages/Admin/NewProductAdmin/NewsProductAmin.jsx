@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import "./NewsProductAdmin.scss";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
 import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 import NavbarAdmin from "../../../components/Admin/NavbarAdmin/NavbarAdmin";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CategoryContext } from "../../../contexts/CategoryContext";
+import axios from "axios";
+import { ProductContext } from "../../../contexts/ProductContext";
 
 const NewsProductAdmin = ({ title, inputs }) => {
+    const { addProduct } = useContext(ProductContext);
     const {
         getAllCategories,
         state: { loading, categories },
     } = useContext(CategoryContext);
     const [file, setFile] = useState("");
-
+    const [product, setProduct] = useState({});
+    const [selectedCategory, setSelectedCategory] = useState(null);
     useEffect(() => {
         const getAllCatalog = async () => {
             await getAllCategories();
@@ -22,7 +25,34 @@ const NewsProductAdmin = ({ title, inputs }) => {
     }, []);
 
     const handleSelectCategory = (e) => {
-        console.log(e.target.value);
+        setSelectedCategory(e.target.value);
+    };
+    const handleChange = (e) => {
+        setProduct({ ...product, [e.target.id]: e.target.value });
+    };
+    const handleAddProduct = async (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "upload");
+        try {
+            const uploadFile = await axios.post(
+                "https://api.cloudinary.com/v1_1/quangvinh255/image/upload",
+                data
+            );
+            const { url } = uploadFile.data;
+
+            const newProduct = {
+                ...product,
+                image: url,
+                id_category: selectedCategory,
+            };
+            await addProduct(newProduct);
+            alert("Thêm sản phẩm thành công");
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <div className="new">
@@ -62,8 +92,10 @@ const NewsProductAdmin = ({ title, inputs }) => {
                                 <div className="formInput" key={input.id}>
                                     <label>{input.label}</label>
                                     <input
+                                        id={input.id}
                                         type={input.type}
                                         placeholder={input.placeholder}
+                                        onChange={handleChange}
                                     />
                                 </div>
                             ))}
@@ -72,7 +104,9 @@ const NewsProductAdmin = ({ title, inputs }) => {
                                 <select
                                     id="category"
                                     onChange={handleSelectCategory}
+                                    defaultValue={selectedCategory}
                                 >
+                                    <option>--Chọn danh mục--</option>
                                     {loading
                                         ? "loading..."
                                         : categories &&
@@ -86,7 +120,7 @@ const NewsProductAdmin = ({ title, inputs }) => {
                                           ))}
                                 </select>
                             </div>
-                            <button>Send</button>
+                            <button onClick={handleAddProduct}>Send</button>
                         </form>
                     </div>
                 </div>

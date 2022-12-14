@@ -88,13 +88,13 @@ export const productColumns = [
     },
     {
         field: "price",
-        headerName: "Price",
+        headerName: "Price(VND)",
         width: 250,
     },
 
     {
         field: "discount",
-        headerName: "Discount",
+        headerName: "Discount(%)",
         width: 240,
     },
     // {

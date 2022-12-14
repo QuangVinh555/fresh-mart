@@ -49,6 +49,6 @@ export const productInputs = [
         id: "discount",
         label: "Discount",
         type: "text",
-        placeholder: "discount",
+        placeholder: "50%",
     },
 ];

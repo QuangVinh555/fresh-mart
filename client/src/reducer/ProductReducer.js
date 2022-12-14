@@ -1,4 +1,4 @@
-const UserReducer = (state, action) => {
+const ProductReducer = (state, action) => {
     const { type, payload } = action;
     switch (type) {
         case "START":
@@ -6,18 +6,10 @@ const UserReducer = (state, action) => {
                 loading: true,
                 error: null,
             };
-
-        case "GET_USER":
+        case "ADD_PRODUCT":
             return {
                 loading: false,
-                user: payload,
-                error: null,
-            };
-
-        case "UPDATE_USER":
-            return {
-                loading: false,
-                user: payload,
+                category: payload,
                 error: null,
             };
 
@@ -32,4 +24,4 @@ const UserReducer = (state, action) => {
     }
 };
 
-export default UserReducer;
+export default ProductReducer;

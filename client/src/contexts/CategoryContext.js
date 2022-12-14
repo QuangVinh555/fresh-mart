@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 const CategoryContextProvider = ({ children }) => {
     const PK = process.env.REACT_APP_PUBLIC_API;
     const [state, dispatch] = useReducer(CategoryReducer, INITIAL_STATE);
-    console.log(state);
     const getAllCategories = async () => {
         dispatch({
             type: "START",

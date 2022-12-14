@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { createContext } from "react";
-import userReducer from "../reducer/UserReducer";
+import AllReducer from "../reducer/AllReducer";
 import axios from "axios";
 
 export const AllContext = createContext();
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 
 const AllContextProvider = ({ children }) => {
     const PK = process.env.REACT_APP_PUBLIC_API;
-    const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
+    const [state, dispatch] = useReducer(AllReducer, INITIAL_STATE);
     const getAllUsers = async (path) => {
         dispatch({
             type: "START",
@@ -21,7 +21,7 @@ const AllContextProvider = ({ children }) => {
             const res = await axios.get(`${PK}/${path}`);
             if (res.data) {
                 dispatch({
-                    type: "GET_ALL_USERS",
+                    type: "GET_ALL_DATA",
                     payload: res.data,
                 });
             }
@@ -32,9 +32,15 @@ const AllContextProvider = ({ children }) => {
             });
         }
     };
+    const deleteN = async (id, path) => {
+        try {
+            await axios.delete(`${PK}/${path}/${id}`);
+        } catch (error) {}
+    };
     const AllContextData = {
         getAllUsers,
         state,
+        deleteN,
     };
     return (
         <AllContext.Provider value={AllContextData}>

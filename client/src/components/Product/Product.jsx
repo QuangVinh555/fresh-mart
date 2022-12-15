@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Product.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faHeart, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 const cx = classNames.bind(styles);
 
-const Product = () => {
+const Product = ({ item, setOpen }) => {
+    const {
+        addCart,
+        state: { carts },
+    } = useContext(CartContext);
+
+    const handleOpenCartModal = async () => {
+        const newProduct = {
+            id_user: "6399c0e1fa9441588190f06f",
+            id_product: item._id,
+        };
+        await addCart(newProduct);
+        setOpen(true);
+    };
+
     return (
         <div className={cx("product-content")}>
             <div className={cx("product-content-list")}>
-                <span className={cx("product-discount")}>- 60%</span>
+                <span className={cx("product-discount")}>
+                    - {item.discount}
+                </span>
                 <div className={cx("product-product")}>
                     <img
-                        src="https://bizweb.dktcdn.net/thumb/large/100/431/449/products/sp2.jpg?v=1625549083000"
+                        src={item.image}
                         alt=""
                         className={cx("product-img")}
                     />
@@ -26,12 +44,13 @@ const Product = () => {
                         <FontAwesomeIcon
                             className={cx("product-product-icon-detail")}
                             icon={faCartPlus}
+                            onClick={handleOpenCartModal}
                         />
                     </div>
                 </div>
-                <span className={cx("product-name")}>Đào đỏ Mỹ</span>
+                <span className={cx("product-name")}>{item.name}</span>
                 <div className={cx("product-price")}>
-                    <span>40.000đ</span>
+                    <span>{item.price}đ</span>
                     <span>68.000đ</span>
                 </div>
             </div>

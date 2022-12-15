@@ -7,7 +7,7 @@ import SidebarAdmin from "../../../components/Admin/SidebarAdmin/SidebarAdmin";
 import TableAdmin from "../../../components/Admin/TableAdmin/TableAdmin";
 import { UserContext } from "../../../contexts/UserContext";
 import { useParams } from "react-router-dom";
-import UpdateUser from "../../../modals/UpdateUser";
+import UpdateUser from "../../../modals/UpdateUserModal/UpdateUser";
 
 const SingleAdmin = () => {
     const {

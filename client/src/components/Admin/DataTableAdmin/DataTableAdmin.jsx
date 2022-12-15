@@ -11,7 +11,7 @@ const DataTableAdmin = ({ columns }) => {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const {
-        getAllUsers,
+        getAlls,
         state: { loading, data },
     } = useContext(AllContext);
     const [list, setList] = useState("");
@@ -27,7 +27,7 @@ const DataTableAdmin = ({ columns }) => {
                     </Box>
                 );
             }
-            await getAllUsers(path);
+            await getAlls(path);
         };
         getAll();
     }, [path]);

@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./SanPham.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faArrowDownZA } from "@fortawesome/free-solid-svg-icons";
 import Product from "../../components/Product/Product";
+import { AllContext } from "../../contexts/AllContext";
+import CartModal from "../../modals/CartModal/CartModal";
 
 const cx = classNames.bind(styles);
 
 const SanPham = () => {
+    const {
+        getAlls,
+        state: { data },
+    } = useContext(AllContext);
+
+    useEffect(() => {
+        const getAllProducts = async () => {
+            await getAlls("product");
+        };
+        getAllProducts();
+    }, []);
+
+    const [openCartModal, setOpenCartModal] = useState(false);
+
     return (
         <div className={cx("product")}>
             <div className={cx("product-filter")}>
@@ -36,19 +52,17 @@ const SanPham = () => {
                 </div>
             </div>
             <div className={cx("product-body")}>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                {data?.map((item) => (
+                    <Product
+                        key={item._id}
+                        item={item}
+                        setOpen={setOpenCartModal}
+                    />
+                ))}
             </div>
+            {openCartModal && (
+                <CartModal setOpen={setOpenCartModal} open={openCartModal} />
+            )}
         </div>
     );
 };

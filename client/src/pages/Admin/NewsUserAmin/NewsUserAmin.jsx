@@ -34,21 +34,22 @@ const NewsUserAdmin = ({ title, inputs }) => {
             const { url } = uploadRes.data;
             if (info.password !== confirmPassword) {
                 alert("Mật khẩu không trùng khớp");
+            } else {
+                const user = {
+                    ...info,
+                    image: url,
+                };
+                await register(user);
+                if (loading) {
+                    return (
+                        <Box sx={{ display: "flex" }}>
+                            <CircularProgress Determinate Indeterminate />
+                        </Box>
+                    );
+                }
+                alert("Thêm user thành công");
+                window.location.reload();
             }
-            const user = {
-                ...info,
-                image: url,
-            };
-            await register(user);
-            if (loading) {
-                return (
-                    <Box sx={{ display: "flex" }}>
-                        <CircularProgress Determinate Indeterminate />
-                    </Box>
-                );
-            }
-            alert("Thêm user thành công");
-            window.location.reload();
         } catch (error) {
             console.log(error);
         }

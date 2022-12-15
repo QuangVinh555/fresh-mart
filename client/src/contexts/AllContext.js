@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 const AllContextProvider = ({ children }) => {
     const PK = process.env.REACT_APP_PUBLIC_API;
     const [state, dispatch] = useReducer(AllReducer, INITIAL_STATE);
-    const getAllUsers = async (path) => {
+    const getAlls = async (path) => {
         dispatch({
             type: "START",
         });
@@ -38,7 +38,7 @@ const AllContextProvider = ({ children }) => {
         } catch (error) {}
     };
     const AllContextData = {
-        getAllUsers,
+        getAlls,
         state,
         deleteN,
     };

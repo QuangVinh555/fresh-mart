@@ -8,24 +8,27 @@ import AuthContextProvider from "./contexts/AuthContext";
 import CategoryContextProvider from "./contexts/CategoryContext";
 import ProductContextProvider from "./contexts/ProductContext";
 import UserContextProvider from "./contexts/UserContext";
+import CartContextProvider from "./contexts/CartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <UserContextProvider>
-            <ProductContextProvider>
-                <CategoryContextProvider>
-                    <AuthContextProvider>
-                        <AllContextProvider>
-                            <DarkContextProvider>
-                                <GlobalStyles>
-                                    <App />
-                                </GlobalStyles>
-                            </DarkContextProvider>
-                        </AllContextProvider>
-                    </AuthContextProvider>
-                </CategoryContextProvider>
-            </ProductContextProvider>
-        </UserContextProvider>
+        <CartContextProvider>
+            <UserContextProvider>
+                <ProductContextProvider>
+                    <CategoryContextProvider>
+                        <AuthContextProvider>
+                            <AllContextProvider>
+                                <DarkContextProvider>
+                                    <GlobalStyles>
+                                        <App />
+                                    </GlobalStyles>
+                                </DarkContextProvider>
+                            </AllContextProvider>
+                        </AuthContextProvider>
+                    </CategoryContextProvider>
+                </ProductContextProvider>
+            </UserContextProvider>
+        </CartContextProvider>
     </React.StrictMode>
 );

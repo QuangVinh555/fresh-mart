@@ -40,6 +40,8 @@
             margin-top: 20px;
             height:70%;
             border-bottom: 1px solid #000000;
+            overflow-y: scroll;
+           
             .cartModal-product-item{
                 display: flex;
                 align-items: center;

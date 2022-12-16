@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./CartModal.scss";
 import "animate.css";
 import CloseIcon from "@mui/icons-material/Close";
+import { CartContext } from "../../contexts/CartContext";
+import { useState } from "react";
 
 const CartModal = ({ setOpen, open }) => {
+    const {
+        getCartofUser,
+        state: { carts },
+        deleteCart,
+    } = useContext(CartContext);
+
+    useEffect(() => {
+        const getAllCart = async () => {
+            await getCartofUser("6399c164fa9441588190f073");
+        };
+        getAllCart();
+    }, []);
+
     return (
         <div className="cartModal">
             <div
@@ -21,31 +36,36 @@ const CartModal = ({ setOpen, open }) => {
                     />
                 </div>
                 <div className="cartModal-product">
-                    <div className="cartModal-product-item">
-                        <div className="cartModal-productImg">
-                            <img
-                                src="https://bizweb.dktcdn.net/thumb/medium/100/431/449/products/sp19.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div className="cartModal-productInfo">
-                            <h2>Ớt chuông vàng</h2>
-                            <span>Số lượng</span>
-                            <div className="cartModal-productInput">
-                                <button type="button" className="">
-                                    -
-                                </button>
-                                <input type="text" placeholder="1" disabled />
-                                <button type="button" className="">
-                                    +
-                                </button>
+                    {carts?.map((item, index) => (
+                        <div key={index} className="cartModal-product-item">
+                            <div className="cartModal-productImg">
+                                <img src={item?.image} alt="" />
                             </div>
-                            <div className="cartModal-productPrice">
-                                <span>12.000đ</span>
-                                <span>Bỏ sản phẩm</span>
+                            <div className="cartModal-productInfo">
+                                <h2>{item?.name}</h2>
+                                <span>Số lượng</span>
+                                <div className="cartModal-productInput">
+                                    <button type="button" className="">
+                                        -
+                                    </button>
+                                    <input
+                                        type="text"
+                                        placeholder="1"
+                                        disabled
+                                    />
+                                    <button type="button" className="">
+                                        +
+                                    </button>
+                                </div>
+                                <div className="cartModal-productPrice">
+                                    <span>{item?.price}</span>
+                                    <span onClick={() => deleteCart(item._id)}>
+                                        Bỏ sản phẩm
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
                 <div className="cartModal-footer">
                     <div className="cartModal-footerPrice">

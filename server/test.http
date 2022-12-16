@@ -1,0 +1,6 @@
+# 
+GET http://localhost:8000/api/cart?userId=6399c164fa9441588190f073
+
+###
+
+GET http://localhost:8000/api/cart/639c2b78f4c9fe373cea8935

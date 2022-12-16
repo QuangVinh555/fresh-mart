@@ -12,12 +12,12 @@ const cx = classNames.bind(styles);
 const Product = ({ item, setOpen }) => {
     const {
         addCart,
-        state: { carts },
+        state: { cart },
     } = useContext(CartContext);
-
     const handleOpenCartModal = async () => {
+        console.log(cart);
         const newProduct = {
-            id_user: "6399c0e1fa9441588190f06f",
+            id_user: "6399c164fa9441588190f073",
             id_product: item._id,
         };
         await addCart(newProduct);

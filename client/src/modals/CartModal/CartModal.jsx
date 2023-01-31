@@ -3,15 +3,13 @@ import "./CartModal.scss";
 import "animate.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { CartContext } from "../../contexts/CartContext";
-import { useState } from "react";
 
 const CartModal = ({ setOpen, open }) => {
     const {
         getCartofUser,
-        state: { carts },
+        state: { carts, cart },
         deleteCart,
     } = useContext(CartContext);
-
     useEffect(() => {
         const getAllCart = async () => {
             await getCartofUser("6399c164fa9441588190f073");
@@ -50,7 +48,7 @@ const CartModal = ({ setOpen, open }) => {
                                     </button>
                                     <input
                                         type="text"
-                                        placeholder="1"
+                                        placeholder={cart?.count}
                                         disabled
                                     />
                                     <button type="button" className="">

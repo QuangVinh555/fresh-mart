@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Product.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,12 +11,9 @@ import { CartContext } from "../../contexts/CartContext";
 const cx = classNames.bind(styles);
 
 const Product = ({ item, setOpen }) => {
-    const {
-        addCart,
-        state: { cart },
-    } = useContext(CartContext);
-    const handleOpenCartModal = async () => {
-        console.log(cart);
+    const { addCart } = useContext(CartContext);
+    const handleOpenCartModal = async (e) => {
+        e.stopPropagation();
         const newProduct = {
             id_user: "6399c164fa9441588190f073",
             id_product: item._id,
@@ -23,10 +21,14 @@ const Product = ({ item, setOpen }) => {
         await addCart(newProduct);
         setOpen(true);
     };
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(`/sanpham/${item._id}`);
+    };
 
     return (
         <div className={cx("product-content")}>
-            <div className={cx("product-content-list")}>
+            <div className={cx("product-content-list")} onClick={handleClick}>
                 <span className={cx("product-discount")}>
                     - {item.discount}
                 </span>

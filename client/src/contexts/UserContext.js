@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 const UserContextProvider = ({ children }) => {
     const PK = process.env.REACT_APP_PUBLIC_API;
     const [state, dispatch] = useReducer(UserReducer, INITIAL_STATE);
-    console.log(state.user);
     const getUser = async (id, user) => {
         dispatch({
             type: "START",

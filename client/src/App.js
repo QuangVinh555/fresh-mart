@@ -17,6 +17,7 @@ import { DarkContext } from "./contexts/DarkModeContext";
 import NewsProductAdmin from "./pages/Admin/NewProductAdmin/NewsProductAmin";
 import NewsUserAdmin from "./pages/Admin/NewsUserAmin/NewsUserAmin";
 import { productColumns, userColumns } from "./datatablesource";
+import ChiTietSanPham from "./pages/ChiTietSanPham/ChiTietSanPham";
 function App() {
     const { dark } = useContext(DarkContext);
     return (
@@ -29,6 +30,10 @@ function App() {
                         <Route path="/gioithieu" element={<GioiThieu />} />
                         <Route path="/tintuc" element={<TinTuc />} />
                         <Route path="/lienhe" element={<LienHe />} />
+                        <Route
+                            path="/sanpham/:id"
+                            element={<ChiTietSanPham />}
+                        />
                     </Route>
 
                     {/* Default Sidebar Layout */}

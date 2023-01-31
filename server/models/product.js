@@ -15,6 +15,9 @@ const ProductSchema = new Schema(
       type: Number,
       required: true,
     },
+    count: {
+      type: Number,
+    },
     discount: {
       type: String,
     },

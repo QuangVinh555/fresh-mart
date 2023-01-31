@@ -130,7 +130,7 @@ const Header = () => {
                         </span>
                     </Link>
                     <Link>
-                        <FontAwesomeIcon icon={faCartArrowDown} />
+                        <FontAwesomeIcon icon={faCartArrowDown}  />
                         <span className={cx("headerOptions-user-numbers")}>
                             2
                         </span>

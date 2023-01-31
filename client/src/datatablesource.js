@@ -93,6 +93,12 @@ export const productColumns = [
     },
 
     {
+        field: "count",
+        headerName: "Count",
+        width: 80,
+    },
+
+    {
         field: "discount",
         headerName: "Discount(%)",
         width: 240,

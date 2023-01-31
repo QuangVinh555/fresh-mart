@@ -46,6 +46,12 @@ export const productInputs = [
         placeholder: "price",
     },
     {
+        id: "count",
+        label: "Count",
+        type: "number",
+        placeholder: "Nhập số lượng",
+    },
+    {
         id: "discount",
         label: "Discount",
         type: "text",

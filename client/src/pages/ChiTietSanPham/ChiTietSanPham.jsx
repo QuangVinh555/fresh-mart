@@ -107,21 +107,23 @@ const ChiTietSanPham = () => {
                                         "detailProduct-content-countNumber"
                                     )}
                                 >
-                                    <button
-                                        className={cx(
-                                            "detailProduct-content-minus"
-                                        )}
-                                    >
-                                        -
-                                    </button>
-                                    <input type="text" value={1} />
-                                    <button
-                                        className={cx(
-                                            "detailProduct-content-plus"
-                                        )}
-                                    >
-                                        +
-                                    </button>
+                                   <div className={cx("detailProduct-content-border")}>
+                                        <button
+                                            className={cx(
+                                                "detailProduct-content-minus"
+                                            )}
+                                        >
+                                            -
+                                        </button>
+                                        <input type="text" value={1} onChange={1} />
+                                        <button
+                                            className={cx(
+                                                "detailProduct-content-plus"
+                                            )}
+                                        >
+                                            +
+                                        </button>
+                                   </div>
                                     <div
                                         className={cx(
                                             "detailProduct-content-buy"
